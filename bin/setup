@@ -1,0 +1,51 @@
+#!/usr/bin/env php
+<?php
+
+/**
+ * このファイルは、php-simple-routerのセットアップを行うためのファイルです。
+ * 
+ * このファイルは以下のコマンドで実行できます。
+ * 
+ * ```
+ * php vendor/php-simple-router/bin/setup
+ * ```
+ * 
+ * このファイルは以下の処理を行います。
+ * 
+ * - 専用のCLIを生成します。
+ * - ルーティングの設定ファイルを作成します。
+ */
+
+/*----------------------------------------*
+ * 変数定義
+ *----------------------------------------*/
+
+// プロジェクトのルートディレクトリ
+// $projectPath = __DIR__ . "/../../../../";
+$projectPath = __DIR__ . "/../../";
+
+// autoloadファイルの読み込み
+require $projectPath . "vendor/autoload.php";
+
+// distディレクトリ
+$distPath = __DIR__ . "/../dist/";
+
+// CLIの名前
+$cliName = "router";
+
+
+
+/*----------------------------------------*
+ * メイン処理
+ *----------------------------------------*/
+
+//  CLIをプロジェクトのルートディレクトリにコピー
+$copyCliResult = copy("{$distPath}{$cliName}", "{$projectPath}{$cliName}");
+
+// コピーに失敗した場合はエラーを出力して終了
+if (!$copyCliResult) {
+    echo "CLIのコピーに失敗しました。 \n";
+    exit(1);
+}
+
+exit(0);

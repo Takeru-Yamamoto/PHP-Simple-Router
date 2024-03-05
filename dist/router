@@ -1,0 +1,16 @@
+<?php
+
+require __DIR__ . "/../vendor/autoload.php";
+
+use SimpleCli\Application;
+
+use SimpleRouter\Command;
+
+$application = new Application;
+
+// コマンド登録
+$application->add(new Command\MakeCacheCommand());
+$application->add(new Command\ClearCacheCommand());
+$application->add(new Command\ShowListCommand());
+
+$application->run();
